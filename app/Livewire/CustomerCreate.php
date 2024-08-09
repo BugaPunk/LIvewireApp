@@ -19,7 +19,9 @@ class CustomerCreate extends Component
 
         is_null($guardar)
         ? $this -> dispatch('notify', title: 'success', message: 'Guardado')
-        : $this -> dispatch('notify', title: 'fail', message: 'Error');
+        : $this -> dispatch('notify', title: 'failed', message: 'Error');
+
+        $this -> dispatch('dispatch-customer-create-save') -> to(CustomerTable::class);
     }
 
     public function render()

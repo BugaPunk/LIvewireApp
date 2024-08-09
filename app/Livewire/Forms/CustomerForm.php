@@ -3,12 +3,16 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Customer;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Rule;
 use Livewire\Form;
 
 class CustomerForm extends Form
 {
     public ?Customer $customer;
+
+    #[Locked]
+    public $id;
 
     #[Rule('required|min:3', as: 'Name')]
     public $name;

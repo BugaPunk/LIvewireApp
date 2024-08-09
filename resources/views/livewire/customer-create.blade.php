@@ -1,6 +1,6 @@
 <div>
     <x-button @click="$wire.set('modalCustomerCreate', true)">
-        Create Customer
+        Crear Usuario
     </x-button>
 
     <x-dialog-modal wire:model.live="modalCustomerCreate" submit="save">
