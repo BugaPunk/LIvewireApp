@@ -1,13 +1,51 @@
-<div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700 mt-8">
-    <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm dark:divide-gray-700 dark:bg-gray-900">
+<div class="overflow-x-auto">
+
+    <div class="mt-8">
+        <label for="Paginación" class="block text-sm font-medium text-gray-900 dark:text-white"> Paginación </label>
+    
+        <select wire:model.live='paginate' name="Paginación" id="Paginación"
+            class="mt-1.5 rounded-lg border-gray-300 text-gray-700 sm:text-sm">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+    </div>
+
+    <table class="min-w-full mt-8 divide-y-2 rounded-lg border border-gray-200 dark:border-gray-700 divide-gray-200 bg-white text-sm dark:divide-gray-700 dark:bg-gray-900">
         <thead class="ltr:text-left rtl:text-right">
             <tr>
                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">#</th>
-                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">ID</th>
-                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">Nombre y Apellidos</th>
-                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">Email</th>
-                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">Direccion</th>
+                <th @click="$wire.sortField('id')" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
+                    <x-sort :$sortDirection :$sortBy :field="'id'" /> ID
+                </th>
+                <th @click="$wire.sortField('name')" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
+                    <x-sort :$sortDirection :$sortBy :field="'name'" /> Nombre(s) y Apellidos
+                </th>
+                <th @click="$wire.sortField('email')" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
+                    <x-sort :$sortDirection :$sortBy :field="'email'" /> Email
+                </th>
+                <th @click="$wire.sortField('address')" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
+                    <x-sort :$sortDirection :$sortBy :field="'address'" /> Direccion
+                </th>
                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">Acciones</th>
+            </tr>
+            <tr>
+                <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white"></td>
+                <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
+                    <x-input-search wire:model.live='form.id' type="search" placeholder="Ingrese un nro identificador" />
+                </td>
+                <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
+                    <x-input-search wire:model.live='form.name' type="search"  placeholder="Ingrese algun nombre u apellido" />
+                </td>
+                <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
+                    <x-input-search wire:model.live='form.email' type="search"  placeholder="Ingrese un Correo" />
+                </td>
+                <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
+                    <x-input-search wire:model.live='form.address' type="search"  placeholder="Ingrese una direccion" />
+                </td>
+                <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white"></td>
             </tr>
         </thead>
 
@@ -21,9 +59,14 @@
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 border-spacing-1">{{ $customer -> email }}</td>
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 border-spacing-1">{{ $customer -> address }}</td>
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 border-spacing-1"></td>
-                  </tr>
+                </tr>
                 @endforeach
             @endisset
         </tbody>
     </table>
+
+    <div class="mt-3 p-3">
+        {{ $data -> onEachSide(1)->links() }}
+    </div>
+
 </div>

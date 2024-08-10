@@ -4,14 +4,20 @@ namespace App\Livewire;
 
 use App\Livewire\Forms\CustomerForm;
 use App\Models\Customer;
+use App\Traits\WithSorting;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class CustomerTable extends Component
 {
+    use WithPagination;
+    use WithSorting;
+
     public CustomerForm $form;
+
     public 
-        $paginate = 10,
+        $paginate = 5,
         $sortBy = 'customers.id',
         $sortDirection = 'desc';
 

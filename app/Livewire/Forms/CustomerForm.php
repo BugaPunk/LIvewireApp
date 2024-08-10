@@ -11,7 +11,6 @@ class CustomerForm extends Form
 {
     public ?Customer $customer;
 
-    #[Locked]
     public $id;
 
     #[Rule('required|min:3', as: 'Name')]
