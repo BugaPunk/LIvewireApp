@@ -11,7 +11,10 @@
                 <div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
                     <h1 class="text-3xl mb-5 text-bold text-white">Añadir Usuario</h1>
                     <livewire:customer-create />
+                    <livewire:customer-edit />
+                    <livewire:customer-delete />
                     <livewire:customer-table />
+
                 </div>
             </div>
         </div>

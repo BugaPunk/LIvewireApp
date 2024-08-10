@@ -21,6 +21,8 @@ class CustomerCreate extends Component
         ? $this -> dispatch('notify', title: 'success', message: 'Guardado')
         : $this -> dispatch('notify', title: 'failed', message: 'Error');
 
+        $this -> modalCustomerCreate = false;
+
         $this -> dispatch('dispatch-customer-create-save') -> to(CustomerTable::class);
     }
 

@@ -1,16 +1,16 @@
 <div class="overflow-x-auto">
 
     <div class="mt-8">
-        <label for="Paginación" class="block text-sm font-medium text-gray-900 dark:text-white"> Paginación </label>
+        <label for="Paginación" class="block text-sm mt-4 font-medium text-gray-900 dark:text-white"> Paginación </label>
     
-        <select wire:model.live='paginate' name="Paginación" id="Paginación"
-            class="mt-1.5 rounded-lg border-gray-300 text-gray-700 sm:text-sm">
+        <x-select wire:model.live='paginate' name="Paginación" id="Paginación"
+            class="text-sm mt-2">
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="25">25</option>
             <option value="50">50</option>
             <option value="100">100</option>
-        </select>
+        </x-select>
     </div>
 
     <table class="min-w-full mt-8 divide-y-2 rounded-lg border border-gray-200 dark:border-gray-700 divide-gray-200 bg-white text-sm dark:divide-gray-700 dark:bg-gray-900">
@@ -31,7 +31,7 @@
                 </th>
                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">Acciones</th>
             </tr>
-            <tr>
+            <tr class="bg-white text-sm dark:bg-slate-900">
                 <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white"></td>
                 <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
                     <x-input-search wire:model.live='form.id' type="search" placeholder="Ingrese un nro identificador" />
@@ -58,7 +58,10 @@
                     <td class="whitespace-nowrap px-6 py-2 text-gray-700 dark:text-gray-200 border-spacing-1">{{ $customer -> name }}</td>
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 border-spacing-1">{{ $customer -> email }}</td>
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 border-spacing-1">{{ $customer -> address }}</td>
-                    <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 border-spacing-1"></td>
+                    <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 border-spacing-1">
+                        <x-button @click="$dispatch('dispatch-customer-table-edit', { id: '{{$customer -> id}}' })" type="button">Edit</x-button>
+                        <x-danger-button @click="$dispatch('dispatch-customer-table-delete', { id: '{{$customer -> id}}', name: '{{ $customer -> name }}' })">Eliminar</x-danger-button>
+                    </td>
                 </tr>
                 @endforeach
             @endisset
